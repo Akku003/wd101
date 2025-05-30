@@ -1,5 +1,5 @@
 let userform = document.getElementById("user-form");
-const initializeEntries = () => {
+if (!localStorage.getItem("user-entries")) {
     localStorage.setItem("user-entries", JSON.stringify([]));
 }
 const retriveEntries = () => {
@@ -72,12 +72,12 @@ const saveUserForm = (event) => {
         dob,
         acceptForm
     };
-
+    userEntries = retriveEntries();
     userEntries.push(entry);
     localStorage.setItem("user-entries", JSON.stringify(userEntries));
     displayEntries();
     userform.reset();
 }
-initializeEntries();
-userform.addEventListener("submit", saveUserForm);
+
 displayEntries();
+userform.addEventListener("submit", saveUserForm);
